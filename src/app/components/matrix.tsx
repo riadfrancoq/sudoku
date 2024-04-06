@@ -1,5 +1,4 @@
 "use client";
-import matrix from "../matrix";
 import Square from "./square";
 export default function Matrix({
     params: { matrix, index },
