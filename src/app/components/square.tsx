@@ -8,6 +8,15 @@ export default function Square({
     const [values, setValues] = useState(Array(element.length).fill(""));
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
+        const userInput: number = parseInt(e.target.value);
+        console.log(userInput);
+        if ( isNaN(userInput))  {
+            const newValues = [...values];
+            newValues[i] = '';
+            setValues(newValues);
+            return;
+
+        }
         let pointer: number = index;
         let verPointer: number = index;
 
@@ -31,7 +40,6 @@ export default function Square({
         }
         
         let exists: boolean = false;
-        const userInput: number = parseInt(e.target.value);
         if (isNaN(userInput)) {
             return;
         }
@@ -78,7 +86,7 @@ export default function Square({
     return (
         <div>
         {element.map((e, i) => (
-         <input type="number" key={i} className="w-10 h-10  border border-gray-300" min={1} max={9} value ={values[i]} 
+         <input type="number" key={i} className="w-10 h-10  border border-gray-300"  min={1} max={9} value ={values[i]} 
 
          onChange={(e) => handleInputChange(e, i)}
          />
