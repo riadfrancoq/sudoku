@@ -8,14 +8,17 @@ export default function Square({
     const [values, setValues] = useState(Array(element.length).fill(""));
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
-        const userInput: number = parseInt(e.target.value);
-        console.log(userInput);
+        let userInput: number = parseInt(e.target.value);
         if ( isNaN(userInput))  {
+            matrix[index][row][i] = 0;
             const newValues = [...values];
-            newValues[i] = '';
+            newValues[i] = "";
             setValues(newValues);
             return;
 
+        } else if ( userInput >= 10) {
+            userInput = Math.trunc(userInput / 10);
+            
         }
         let pointer: number = index;
         let verPointer: number = index;
@@ -73,6 +76,7 @@ export default function Square({
         }
         }
         if (exists === false) { 
+            console.log('xd')
         matrix[index][row][i] = userInput;
             const newValues = [...values];
             newValues[i] = userInput;
